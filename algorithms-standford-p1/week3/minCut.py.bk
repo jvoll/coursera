@@ -1,0 +1,92 @@
+#!/usr/bin/python
+#
+# Author: jvoll
+#
+# Basic quicksort algorithm. Sorts the input array and keeps track of the number
+# of comparisons made using (less the number of comparisons made to choose the pivot).
+# The number of comparisons at each level of recursion is m-1 where m is the length
+# of the subarray being operated on in that recursive call.
+#
+# Input: array A containing the numbers 1,2,3,...,n in some arbitrary order
+# Output: the number of comparisons made to sort the array (and the sorted array if code uncommented)
+#
+
+import random
+
+def readGraphIn(f):
+    vertices = {}
+    edges = set()
+    for line in f:
+        l = map(int, line.split())
+        curVert = l.pop(0)
+        vertices[curVert] = l
+        for vert in l:
+            addEdge(edges, (curVert, vert))
+    return (vertices, edges)
+
+def addUnique(l, item):
+    if item not in l:
+        l.append(item)
+    return l #TODO do we need to return this?
+
+def addEdge(edges, unorderedEdge):
+    if (unorderedEdge[0] < unorderedEdge[1]):
+        edges.add(unorderedEdge)
+    else:
+        edges.add((unorderedEdge[1], unorderedEdge[0]))
+
+def removeEdge(edges, unorderedEdge):
+    if (unorderedEdge[0] < unorderedEdge[1]):
+        edges.remove(unorderedEdge)
+    else:
+        edges.remove((unorderedEdge[1], unorderedEdge[0]))
+
+def collapseEdge(vertices, edges):
+    print "num edges:", len(edges)
+    randInd = random.randint(0, len(edges) -1)
+    edge = list(edges)[randInd]
+    print "randomInd:", randInd, "edge:", edge
+
+    startNode = edge[0]
+    endNode = edge[1]
+    endNeighbours = vertices.pop(endNode)
+    #edges.remove(edge)
+    print "endNeighbours:", endNeighbours
+
+    for n in endNeighbours:
+        #print "n:", n
+        if n != startNode:
+            vertices[startNode] = addUnique(vertices[startNode], n)
+            vertices[n] = addUnique(vertices[n], startNode)
+            addEdge(edges, (startNode, n))
+        #print vertices
+        if n != endNode:
+            vertices[n].remove(endNode)
+            removeEdge(edges, (n, endNode))
+        #print vertices
+
+def minCut(vertices, edges):
+    while len(vertices) > 2:
+        collapseEdge(vertices, edges)
+        print "verts:", vertices
+        print "edges:", edges
+
+def main():
+    inputList = []
+
+    f = open('smallTest.txt', 'r')
+    print "Input file:", f
+    (vertices, edges) = readGraphIn(f)
+    print "verts:", vertices
+    print "edges:", edges
+
+    random.seed(42)
+    #collapseEdge(vertices, edges)
+    minCut(vertices, edges)
+
+    print "verts:", vertices
+    print "edges:", edges
+
+
+if __name__ == "__main__":
+    main()
