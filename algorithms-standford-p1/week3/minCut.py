@@ -114,7 +114,7 @@ def minCutSingle(vertices, edges):
 
 def minCut(vertices, edges):
     minimumCut = len(edges)
-    for i in range(0, 100):
+    for i in range(0, 20000):
         curCut = minCutSingle(copy.deepcopy(vertices), edges)
         minimumCut = min(curCut, minimumCut)
         print "Attempt:", i, "minCut:", minimumCut, "cut:", curCut
@@ -128,7 +128,7 @@ def main():
     #f = open('expectedCutOne.txt', 'r')
     #f = open('longerTest.txt', 'r')
     #f = open('anotherTest.txt', 'r')
-    f = open('kargerMinCut.txt', 'r')
+    f = open('kargerMinCut.txt', 'r') # answer = 17
     print "Input file:", f
     (vertices, edges) = readGraphIn(f)
     print "verts:", vertices
