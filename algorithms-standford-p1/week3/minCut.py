@@ -2,13 +2,8 @@
 #
 # Author: jvoll
 #
-# Basic quicksort algorithm. Sorts the input array and keeps track of the number
-# of comparisons made using (less the number of comparisons made to choose the pivot).
-# The number of comparisons at each level of recursion is m-1 where m is the length
-# of the subarray being operated on in that recursive call.
-#
-# Input: array A containing the numbers 1,2,3,...,n in some arbitrary order
-# Output: the number of comparisons made to sort the array (and the sorted array if code uncommented)
+# Implementation of Karger's min cut algorithm
+# https://en.wikipedia.org/wiki/Karger%27s_algorithm
 #
 
 import copy
@@ -28,9 +23,7 @@ def readGraphIn(f):
 def addUnique(l, item):
     if item not in l:
         l.append(item)
-    return l #TODO do we need to return this?
-
-#def addEdges(edges,
+    return l
 
 def orderEdge((a, b)):
     if (a < b):
@@ -40,10 +33,6 @@ def orderEdge((a, b)):
 
 def addEdgeToSet(edges, unorderedEdge):
     edges.add(orderEdge(unorderedEdge))
-    #if (unorderedEdge[0] < unorderedEdge[1]):
-    #    edges.add(unorderedEdge)
-    #else:
-    #    edges.add((unorderedEdge[1], unorderedEdge[0]))
 
 def addEdge(edges, unorderedEdge):
     edges.append(orderEdge(unorderedEdge))
@@ -73,15 +62,12 @@ def collapseEdge(vertices, edges):
     startNode = edge[0]
     endNode = edge[1]
     endNeighbours = vertices.pop(endNode)
-    #(edges,x) = removeEdges(edges, edge)
-    #edges.remove(edge)
     #print "edges after remove:", edges
     #print "endNeighbours:", endNeighbours
 
 
     # replace all edges from endNode to endNeighbour n
     # with edge from startNode to n
-
     for n in endNeighbours:
 
         (edges, removed) = removeEdges(edges, (endNode, n))
@@ -90,20 +76,14 @@ def collapseEdge(vertices, edges):
             for i in range(0, removed):
                 addEdge(edges, (startNode, n))
 
-        #print "n:", n
         if n != startNode:
             vertices[startNode] = addUnique(vertices[startNode], n)
             vertices[n] = addUnique(vertices[n], startNode)
-        #print vertices
         if n != endNode:
             vertices[n].remove(endNode)
 
-        #addEdge(edges, (startNode, n))
-        #edges = removeEdges(edges, (n, endNode))
-        #print vertices
     (edges,x) = removeEdges(edges, edge)
     return (vertices, edges)
-    #print "edges after remove:", edges
 
 def minCutSingle(vertices, edges):
     while len(vertices) > 2:
@@ -131,11 +111,10 @@ def main():
     f = open('kargerMinCut.txt', 'r') # answer = 17
     print "Input file:", f
     (vertices, edges) = readGraphIn(f)
-    print "verts:", vertices
-    print "edges:", edges
+    #print "verts:", vertices
+    #print "edges:", edges
 
     random.seed()
-    #collapseEdge(vertices, edges)
     minimumCut = minCut(vertices, edges)
     print "Minimum cut:", minimumCut
 

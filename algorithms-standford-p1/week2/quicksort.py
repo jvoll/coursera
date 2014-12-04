@@ -3,7 +3,7 @@
 # Author: jvoll
 #
 # Basic quicksort algorithm. Sorts the input array and keeps track of the number
-# of comparisons made using (less the number of comparisons made to choose the pivot).
+# of comparisons made (less the number of comparisons made to choose the pivot).
 # The number of comparisons at each level of recursion is m-1 where m is the length
 # of the subarray being operated on in that recursive call.
 #

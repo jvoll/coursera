@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# Calculate stronly connected components of a given graph using Kosarju's algorithm.
+# Calculate strongly connected components of a given graph using Kosarju's algorithm.
 # https://en.wikipedia.org/wiki/Strongly_connected_component
 #
 
@@ -63,9 +63,6 @@ def dfs(g, i, explored, t, s, f, leaders):
                 f[v] = t
 
     return t
-
-
-#global t, s, explored, f
 
 def dfsLoop(g, iterationOrder):
     t = 0 # number of nodes processed so far -- used for finishing times in first pass
