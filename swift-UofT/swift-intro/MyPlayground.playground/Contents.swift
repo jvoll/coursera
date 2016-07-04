@@ -7,3 +7,5 @@ var str = "Hello, playground"
 var x = 1
 var y = 2
 var z = x + y
+
+var mugshot = UIImage(named: "mugshot.JPG")
