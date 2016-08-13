@@ -1,5 +1,6 @@
 import Foundation
 
+// Protocol that all formulas must implement
 public protocol Formula {
     func apply(pixel: Pixel, averages: RGB) -> Pixel
 }
@@ -58,6 +59,7 @@ public class BlueBump: Formula {
     }
 }
 
+// No reason to configure the effect of this one, greyscale calls for averaging the 3 pixels
 public class BlackAndWhite: Formula {
 
     public init() {
