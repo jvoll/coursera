@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
@@ -16,19 +16,104 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="yosemite-landscape" translatesAutoresizingMaskIntoConstraints="NO" id="duj-vV-jea">
-                                <rect key="frame" x="0.0" y="28" width="351" height="357"/>
-                                <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l6F-4z-mUS">
-                                <rect key="frame" x="64" y="401" width="222" height="30"/>
-                                <state key="normal" title="Show Filtered Image"/>
-                                <connections>
-                                    <action selector="onImageToggle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y3Z-dG-04r"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bDG-sh-mOO">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="yosemite-landscape" translatesAutoresizingMaskIntoConstraints="NO" id="duj-vV-jea">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
+                                        <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HbK-GD-I2A">
+                                        <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="U8y-tH-pgq">
+                                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l6F-4z-mUS">
+                                                        <rect key="frame" x="0.0" y="0.0" width="150" height="44"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="44" id="exm-3W-EsT"/>
+                                                            <constraint firstAttribute="height" constant="44" id="xBy-cB-iwg"/>
+                                                        </constraints>
+                                                        <state key="normal" title="New Photo"/>
+                                                        <variation key="default">
+                                                            <mask key="constraints">
+                                                                <exclude reference="exm-3W-EsT"/>
+                                                            </mask>
+                                                        </variation>
+                                                        <connections>
+                                                            <action selector="onImageToggle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y3Z-dG-04r"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14w-nb-JHM">
+                                                        <rect key="frame" x="150" y="0.0" width="150" height="44"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="44" id="Iog-m7-Mhs"/>
+                                                            <constraint firstAttribute="height" constant="44" id="V0D-tK-n7l"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Filter"/>
+                                                        <variation key="default">
+                                                            <mask key="constraints">
+                                                                <exclude reference="Iog-m7-Mhs"/>
+                                                            </mask>
+                                                        </variation>
+                                                        <connections>
+                                                            <action selector="onImageToggle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bd8-3f-Tp2"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Xa-D3-3ht">
+                                                        <rect key="frame" x="300" y="0.0" width="150" height="44"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="44" id="ESU-qE-yvk"/>
+                                                            <constraint firstAttribute="height" constant="44" id="a8o-bK-uWs"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Compare"/>
+                                                        <variation key="default">
+                                                            <mask key="constraints">
+                                                                <exclude reference="a8o-bK-uWs"/>
+                                                            </mask>
+                                                        </variation>
+                                                        <connections>
+                                                            <action selector="onImageToggle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="V4v-Jk-My9"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GKg-Jw-m7C">
+                                                        <rect key="frame" x="450" y="0.0" width="150" height="44"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="44" id="8op-vV-Bgf"/>
+                                                            <constraint firstAttribute="height" constant="44" id="pQL-eg-8Kz"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Share"/>
+                                                        <variation key="default">
+                                                            <mask key="constraints">
+                                                                <exclude reference="8op-vV-Bgf"/>
+                                                            </mask>
+                                                        </variation>
+                                                        <connections>
+                                                            <action selector="onImageToggle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lfO-sH-DIL"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="U8y-tH-pgq" secondAttribute="trailing" id="MgF-f5-qmw"/>
+                                            <constraint firstItem="U8y-tH-pgq" firstAttribute="leading" secondItem="HbK-GD-I2A" secondAttribute="leading" id="TuL-lU-QxF"/>
+                                            <constraint firstItem="U8y-tH-pgq" firstAttribute="top" secondItem="HbK-GD-I2A" secondAttribute="top" id="WFA-bR-JhI"/>
+                                            <constraint firstAttribute="bottom" secondItem="U8y-tH-pgq" secondAttribute="bottom" id="kdO-ES-prG"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="bDG-sh-mOO" secondAttribute="bottom" id="2Eb-5d-EmF"/>
+                            <constraint firstItem="bDG-sh-mOO" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="KBH-dK-4GM"/>
+                            <constraint firstItem="bDG-sh-mOO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="XXD-Iv-d3X"/>
+                            <constraint firstAttribute="trailing" secondItem="bDG-sh-mOO" secondAttribute="trailing" id="oX3-y0-H02"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="imageToggle" destination="l6F-4z-mUS" id="GU9-Kk-F5S"/>
