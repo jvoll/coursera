@@ -30,6 +30,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet var secondaryMenu: UIView!
 
     @IBOutlet weak var filterButton: UIButton!
+    @IBOutlet weak var compareButton: UIButton!
 
 //    @IBOutlet weak var imageToggle: UIButton!
 
@@ -48,8 +49,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         secondaryMenu.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
         secondaryMenu.translatesAutoresizingMaskIntoConstraints = false
 
-        imageView.image = model.currentImage
+        reset()
 
+        let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(imageTappedHandler(_:)))
+        gestureRecognizer.minimumPressDuration = 0.01
+        imageView.addGestureRecognizer(gestureRecognizer)
         
 //        // Process the image!
 //        let myOriginalImage = RGBAImage(image: originalImage)!
@@ -62,6 +66,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    func imageTappedHandler(sender: UITapGestureRecognizer) {
+        if sender.state == .Began {
+            toggleShowingImage()
+        } else if sender.state == .Ended{
+            toggleShowingImage()
+        }
+    }
+
+    private func reset() {
+        imageView.image = model.currentFilteredImage
+        compareButton.enabled = false
     }
 
 //    func getAverages(image: RGBAImage) -> RGB {
@@ -140,7 +157,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         dismissViewControllerAnimated(true, completion: nil)
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            imageView.image = image
+            model.originalImage = image
+            reset()
         }
     }
 
@@ -215,15 +233,24 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
 
     private func showFilteredImage() {
-        imageView.image = model.currentImage
+        imageView.image = model.currentFilteredImage
         showingFiltered = true
+        compareButton.enabled = true
     }
 
     @IBAction func onCompare(sender: UIButton) {
+        toggleShowingImage()
+    }
+
+    func toggleShowingImage() {
+        if !model.anyFilterApplied {
+            return
+        }
+
         if showingFiltered {
             imageView.image = model.originalImage
         } else {
-            imageView.image = model.currentImage
+            imageView.image = model.currentFilteredImage
         }
         showingFiltered = !showingFiltered
     }

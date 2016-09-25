@@ -12,21 +12,25 @@ import UIKit
 class Model {
     var originalImage = UIImage(named: "yosemite-landscape") {
         didSet {
-            currentImage = originalImage
+            currentFilteredImage = originalImage
             imageCache.removeAll(keepCapacity: false)
         }
     }
 
-    var currentImage: UIImage?
+    var anyFilterApplied: Bool {
+        return imageCache.count > 0
+    }
+
+    var currentFilteredImage: UIImage?
     var imageCache = [Int: UIImage]()
 
     init() {
-        currentImage = originalImage
+        currentFilteredImage = originalImage
     }
 
     func apply(formula: Formula) {
         if let cachedImage = imageCache[formula.hashValue] {
-            currentImage = cachedImage
+            currentFilteredImage = cachedImage
             return
         }
 
@@ -37,6 +41,6 @@ class Model {
 
         let result = FilterUtil.applyFilter(original, formula: formula)
         imageCache[formula.hashValue] = result
-        currentImage = result
+        currentFilteredImage = result
     }
 }
