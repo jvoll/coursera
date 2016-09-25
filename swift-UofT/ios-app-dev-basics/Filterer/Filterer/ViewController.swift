@@ -80,7 +80,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     private func reset() {
         imageView.image = model.currentFilteredImage
         compareButton.enabled = false
-        originalTextView.hidden = false
+        self.originalTextView.alpha = 0.7
     }
 
 //    func getAverages(image: RGBAImage) -> RGB {
@@ -235,16 +235,29 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
 
     private func showFilteredImage() {
-        imageView.image = model.currentFilteredImage
+        UIView.transitionWithView(self.imageView,
+                                  duration:0.5,
+                                  options: UIViewAnimationOptions.TransitionCrossDissolve,
+                                  animations: {
+                                    self.imageView.image = self.model.currentFilteredImage
+                                    self.originalTextView.alpha = 0
+                                    },
+                                  completion: nil)
         showingFiltered = true
         compareButton.enabled = true
-        originalTextView.hidden = true
+
     }
 
     private func showOriginal() {
-        imageView.image = model.originalImage
+        UIView.transitionWithView(self.imageView,
+                                  duration:0.5,
+                                  options: UIViewAnimationOptions.TransitionCrossDissolve,
+                                  animations: {
+                                    self.imageView.image = self.model.originalImage
+                                    self.originalTextView.alpha = 0.7
+                                    },
+                                  completion: nil)
         showingFiltered = false
-        originalTextView.hidden = false
     }
 
     @IBAction func onCompare(sender: UIButton) {
