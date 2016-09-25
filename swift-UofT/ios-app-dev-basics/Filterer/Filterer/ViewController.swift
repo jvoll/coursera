@@ -8,22 +8,22 @@
 
 import UIKit
 
-struct RGB {
-    let red: Int
-    let green: Int
-    let blue: Int
-    init(red: Int, green: Int, blue: Int) {
-        self.red = red
-        self.green = green
-        self.blue = blue
-    }
-}
+//struct RGB {
+//    let red: Int
+//    let green: Int
+//    let blue: Int
+//    init(red: Int, green: Int, blue: Int) {
+//        self.red = red
+//        self.green = green
+//        self.blue = blue
+//    }
+//}
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    let originalImage = UIImage(named: "yosemite-landscape")!
-    var filteredImage: UIImage?
+    
     var showingFiltered = false
+    let model = Model()
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var bottomMenu: UIView!
@@ -48,7 +48,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         secondaryMenu.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
         secondaryMenu.translatesAutoresizingMaskIntoConstraints = false
 
-        // Do any additional setup after loading the view, typically from a nib.
+        imageView.image = model.currentImage
+
         
 //        // Process the image!
 //        let myOriginalImage = RGBAImage(image: originalImage)!
@@ -147,8 +148,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         dismissViewControllerAnimated(true, completion: nil)
     }
 
-
-
     @IBAction func onFilter(sender: UIButton) {
         if (sender.selected) {
             hideSecondaryMenu()
@@ -184,5 +183,48 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             }
         }
     }
-}
 
+    let redBump = RedBump(multiplier: 5)
+    @IBAction func onRedFilter(sender: UIButton) {
+        model.apply(redBump)
+        showFilteredImage()
+    }
+
+    let greenBump = GreenBump(multiplier: 5)
+    @IBAction func onGreenFilter(sender: UIButton) {
+        model.apply(greenBump)
+        showFilteredImage()
+    }
+
+    let blueBump = BlueBump(multiplier: 5)
+    @IBAction func onBlueFilter(sender: UIButton) {
+        model.apply(blueBump)
+        showFilteredImage()
+    }
+
+    let blackAndWhite = BlackAndWhite()
+    @IBAction func onBlackAndWhiteFilter(sender: UIButton) {
+        model.apply(blackAndWhite)
+        showFilteredImage()
+    }
+
+    let brightness = Brightness(bump: 10)
+    @IBAction func onBrightnessFilter(sender: UIButton) {
+        model.apply(brightness)
+        showFilteredImage()
+    }
+
+    private func showFilteredImage() {
+        imageView.image = model.currentImage
+        showingFiltered = true
+    }
+
+    @IBAction func onCompare(sender: UIButton) {
+        if showingFiltered {
+            imageView.image = model.originalImage
+        } else {
+            imageView.image = model.currentImage
+        }
+        showingFiltered = !showingFiltered
+    }
+}
