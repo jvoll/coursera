@@ -31,6 +31,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var compareButton: UIButton!
+    @IBOutlet weak var originalTextView: UITextView!
 
 //    @IBOutlet weak var imageToggle: UIButton!
 
@@ -79,6 +80,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     private func reset() {
         imageView.image = model.currentFilteredImage
         compareButton.enabled = false
+        originalTextView.hidden = false
     }
 
 //    func getAverages(image: RGBAImage) -> RGB {
@@ -236,6 +238,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imageView.image = model.currentFilteredImage
         showingFiltered = true
         compareButton.enabled = true
+        originalTextView.hidden = true
+    }
+
+    private func showOriginal() {
+        imageView.image = model.originalImage
+        showingFiltered = false
+        originalTextView.hidden = false
     }
 
     @IBAction func onCompare(sender: UIButton) {
@@ -248,10 +257,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
 
         if showingFiltered {
-            imageView.image = model.originalImage
+            showOriginal()
         } else {
-            imageView.image = model.currentFilteredImage
+            showFilteredImage()
         }
-        showingFiltered = !showingFiltered
     }
 }
