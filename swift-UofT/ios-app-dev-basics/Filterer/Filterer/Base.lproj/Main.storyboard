@@ -27,7 +27,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l6F-4z-mUS">
-                                                <rect key="frame" x="0.0" y="0.0" width="150" height="44"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="120" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="exm-3W-EsT"/>
                                                     <constraint firstAttribute="height" constant="44" id="xBy-cB-iwg"/>
@@ -43,7 +43,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14w-nb-JHM">
-                                                <rect key="frame" x="150" y="0.0" width="150" height="44"/>
+                                                <rect key="frame" x="120" y="0.0" width="120" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="Iog-m7-Mhs"/>
                                                     <constraint firstAttribute="height" constant="44" id="V0D-tK-n7l"/>
@@ -58,8 +58,24 @@
                                                     <action selector="onFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sYt-a4-HDo"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q77-RR-6Hq">
+                                                <rect key="frame" x="240" y="0.0" width="120" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="RhA-zO-2gn"/>
+                                                    <constraint firstAttribute="height" constant="44" id="xml-Jp-SGj"/>
+                                                </constraints>
+                                                <state key="normal" title="Edit"/>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="RhA-zO-2gn"/>
+                                                    </mask>
+                                                </variation>
+                                                <connections>
+                                                    <action selector="onEdit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ljs-iB-0No"/>
+                                                </connections>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Xa-D3-3ht">
-                                                <rect key="frame" x="300" y="0.0" width="150" height="44"/>
+                                                <rect key="frame" x="360" y="0.0" width="120" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="ESU-qE-yvk"/>
                                                     <constraint firstAttribute="height" constant="44" id="a8o-bK-uWs"/>
@@ -75,7 +91,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GKg-Jw-m7C">
-                                                <rect key="frame" x="450" y="0.0" width="150" height="44"/>
+                                                <rect key="frame" x="480" y="0.0" width="120" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="8op-vV-Bgf"/>
                                                     <constraint firstAttribute="height" constant="44" id="pQL-eg-8Kz"/>
@@ -131,6 +147,9 @@
                         <outlet property="bottomMenu" destination="HbK-GD-I2A" id="TUQ-pX-oAu"/>
                         <outlet property="brightnessButton" destination="KgW-li-AkV" id="qtD-tb-mPY"/>
                         <outlet property="compareButton" destination="0Xa-D3-3ht" id="ETr-4e-Cai"/>
+                        <outlet property="editButton" destination="Q77-RR-6Hq" id="Y5o-BQ-EPm"/>
+                        <outlet property="editFilterView" destination="PYW-Vk-JCg" id="kc8-oU-FVo"/>
+                        <outlet property="editSlider" destination="LJU-Q8-J2U" id="LT4-Wz-spy"/>
                         <outlet property="filterButton" destination="14w-nb-JHM" id="ccM-bk-DmB"/>
                         <outlet property="greenButton" destination="EYR-lD-d05" id="z3L-Av-hwM"/>
                         <outlet property="imageView" destination="duj-vV-jea" id="nXP-I1-sCQ"/>
@@ -191,6 +210,25 @@
                         <constraint firstItem="zyz-b5-JHL" firstAttribute="top" secondItem="M3U-T1-aEh" secondAttribute="top" id="Xco-43-sxk"/>
                         <constraint firstAttribute="bottom" secondItem="zyz-b5-JHL" secondAttribute="bottom" id="hDW-xb-gtp"/>
                         <constraint firstItem="zyz-b5-JHL" firstAttribute="leading" secondItem="M3U-T1-aEh" secondAttribute="leading" id="iJW-xU-PtJ"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" id="PYW-Vk-JCg" userLabel="editFilterView">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="LJU-Q8-J2U">
+                            <rect key="frame" x="42" y="0.0" width="156" height="129"/>
+                            <connections>
+                                <action selector="onSliderChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="bb1-TJ-PG2"/>
+                            </connections>
+                        </slider>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="LJU-Q8-J2U" firstAttribute="leading" secondItem="PYW-Vk-JCg" secondAttribute="leading" constant="44" id="BlK-DK-phr"/>
+                        <constraint firstItem="LJU-Q8-J2U" firstAttribute="top" secondItem="PYW-Vk-JCg" secondAttribute="top" id="NGv-zu-kQa"/>
+                        <constraint firstAttribute="trailing" secondItem="LJU-Q8-J2U" secondAttribute="trailing" constant="44" id="Wkt-G7-3uy"/>
+                        <constraint firstAttribute="bottom" secondItem="LJU-Q8-J2U" secondAttribute="bottom" id="hCe-gr-xpW"/>
                     </constraints>
                 </view>
             </objects>

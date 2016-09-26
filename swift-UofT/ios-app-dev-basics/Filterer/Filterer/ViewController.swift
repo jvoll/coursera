@@ -8,17 +8,6 @@
 
 import UIKit
 
-//struct RGB {
-//    let red: Int
-//    let green: Int
-//    let blue: Int
-//    init(red: Int, green: Int, blue: Int) {
-//        self.red = red
-//        self.green = green
-//        self.blue = blue
-//    }
-//}
-
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     
@@ -28,21 +17,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var bottomMenu: UIView!
     @IBOutlet var secondaryMenu: UIView!
+    @IBOutlet var editFilterView: UIView!
+    @IBOutlet weak var editSlider: UISlider!
 
     @IBOutlet weak var filterButton: UIButton!
+    @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var compareButton: UIButton!
     @IBOutlet weak var originalTextView: UITextView!
-
-//    @IBOutlet weak var imageToggle: UIButton!
-
-//    @IBAction func onImageToggle(sender: UIButton) {
-//        if imageToggle.selected {
-//            imageView.image = originalImage
-//        } else {
-//            imageView.image = filteredImage
-//        }
-//        imageToggle.selected = !imageToggle.selected
-//    }
 
     @IBOutlet weak var redButton: UIButton!
     @IBOutlet weak var greenButton: UIButton!
@@ -53,27 +34,25 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Setup filter menu (secondaryMenu)
         secondaryMenu.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
         secondaryMenu.translatesAutoresizingMaskIntoConstraints = false
-        
         redButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
         greenButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
         blueButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
         blackWhiteButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
         brightnessButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
 
+        // Setup edit filter menu (editFilterView)
+        editFilterView.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
+        editFilterView.translatesAutoresizingMaskIntoConstraints = false
+        editSlider.continuous = false
+
         reset()
 
         let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(imageTappedHandler(_:)))
         gestureRecognizer.minimumPressDuration = 0.01
         imageView.addGestureRecognizer(gestureRecognizer)
-        
-//        // Process the image!
-//        let myOriginalImage = RGBAImage(image: originalImage)!
-//
-//        let averages = getAverages(myOriginalImage)
-//        let filteredImageRGB = filter(averages, image: myOriginalImage)
-//        filteredImage = filteredImageRGB.toUIImage()
     }
 
     override func didReceiveMemoryWarning() {
@@ -92,45 +71,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     private func reset() {
         imageView.image = model.currentFilteredImage
         compareButton.enabled = false
+        editButton.enabled = false
         self.originalTextView.alpha = 0.7
     }
-
-//    func getAverages(image: RGBAImage) -> RGB {
-//        var totalRed = 0
-//        var totalGreen = 0
-//        var totalBlue = 0
-//
-//        for y in 0..<image.height {
-//            for x in 0..<image.width {
-//                let pixel = image.pixels[y * image.width + x]
-//                totalRed += Int(pixel.red)
-//                totalGreen += Int(pixel.green)
-//                totalBlue += Int(pixel.blue)
-//            }
-//        }
-//
-//        let totalPixels = image.height * image.width
-//        return RGB(
-//            red: totalRed/totalPixels,
-//            green: totalGreen/totalPixels,
-//            blue: totalBlue/totalPixels)
-//    }
-//
-//    func filter(averages: RGB, image: RGBAImage) -> RGBAImage{
-//        var newImage = image
-//        for y in 0..<image.height {
-//            for x in 0..<image.width {
-//                let index = y * image.width + x
-//                var pixel = image.pixels[index]
-//                let blueDiff = Int(pixel.blue) - averages.blue
-//                if blueDiff > 0 {
-//                    pixel.blue = UInt8(max(0, min(255, averages.blue + blueDiff * 5)))
-//                    newImage.pixels[index] = pixel
-//                }
-//            }
-//        }
-//        return newImage
-//    }
 
     @IBAction func onShare(sender: UIButton) {
         // TODO clean up this force unwrap of image
@@ -181,12 +124,26 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
 
     @IBAction func onFilter(sender: UIButton) {
+        editButton.selected = false
         if (sender.selected) {
             hideSecondaryMenu()
             sender.selected = false
         } else {
+            hideEditMenu()
             showSecondaryMenu()
             sender.selected = true
+        }
+    }
+
+    @IBAction func onEdit(sender: UIButton) {
+        filterButton.selected = false
+        if (sender.selected) {
+            sender.selected = false
+            hideEditMenu()
+        } else {
+            sender.selected = true
+            hideSecondaryMenu()
+            showEditMenu()
         }
     }
 
@@ -216,34 +173,93 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
 
-    let redBump = RedBump(multiplier: 25)
+    func showEditMenu() {
+        guard let formula = currentFormula,
+            let modifier = formula.modifier,
+            let minValue = formula.minValue,
+            let maxValue = formula.maxValue else {
+            print("Error: no current formula/modifier")
+            return
+        }
+        editSlider.minimumValue = minValue
+        editSlider.maximumValue = maxValue
+        editSlider.value = Float(modifier)
+
+        view.addSubview(editFilterView)
+
+        let bottomConstraint = editFilterView.bottomAnchor.constraintEqualToAnchor(bottomMenu.topAnchor)
+        let leftConstraint = editFilterView.leftAnchor.constraintEqualToAnchor(view.leftAnchor)
+        let rightConstraint = editFilterView.rightAnchor.constraintEqualToAnchor(view.rightAnchor)
+        let heightConstraint = editFilterView.heightAnchor.constraintEqualToConstant(55)
+        NSLayoutConstraint.activateConstraints([bottomConstraint, leftConstraint, rightConstraint, heightConstraint])
+        view.layoutIfNeeded()
+
+        UIView.animateWithDuration(0.4) {
+            self.editFilterView.alpha = 1.0
+        }
+    }
+
+    func hideEditMenu() {
+        UIView.animateWithDuration(0.4, animations: {
+            self.editFilterView.alpha = 0
+        }) { completed in
+            if completed == true {
+                self.editFilterView.removeFromSuperview()
+            }
+        }
+    }
+
+    @IBAction func onSliderChanged(sender: UISlider) {
+        guard var formula = currentFormula else {
+            print("Error: no current formula")
+            return
+        }
+
+        let value = sender.value
+        formula.modifier = Int(value)
+        model.apply(formula)
+        showFilteredImage()
+    }
+
+    var currentFormula: Formula?
+    let redBump = RedBump(multiplier: 5)
     @IBAction func onRedFilter(sender: UIButton) {
+        currentFormula = redBump
         model.apply(redBump)
         showFilteredImage()
+        editButton.enabled = true
     }
 
-    let greenBump = GreenBump(multiplier: 25)
+    let greenBump = GreenBump(multiplier: 5)
     @IBAction func onGreenFilter(sender: UIButton) {
+        currentFormula = greenBump
         model.apply(greenBump)
         showFilteredImage()
+        editButton.enabled = true
     }
 
-    let blueBump = BlueBump(multiplier: 25)
+    let blueBump = BlueBump(multiplier: 5)
     @IBAction func onBlueFilter(sender: UIButton) {
+        currentFormula = blueBump
         model.apply(blueBump)
         showFilteredImage()
+        editButton.enabled = true
     }
 
     let blackAndWhite = BlackAndWhite()
     @IBAction func onBlackAndWhiteFilter(sender: UIButton) {
+        currentFormula = blackAndWhite
         model.apply(blackAndWhite)
         showFilteredImage()
+        editButton.enabled = false
     }
 
     let brightness = Brightness(bump: 50)
     @IBAction func onBrightnessFilter(sender: UIButton) {
+        currentFormula = brightness
         model.apply(brightness)
         showFilteredImage()
+        editButton.enabled = true
     }
 
     private func showFilteredImage() {
@@ -257,7 +273,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                                   completion: nil)
         showingFiltered = true
         compareButton.enabled = true
-
     }
 
     private func showOriginal() {
@@ -273,7 +288,20 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
 
     @IBAction func onCompare(sender: UIButton) {
+        guard let formula = currentFormula else {
+            print("Error: current formula not specified")
+            return
+        }
+
         toggleShowingImage()
+
+        if showingFiltered && formula.modifiable {
+            editButton.enabled = true
+        } else {
+            hideEditMenu()
+            editButton.selected = false
+            editButton.enabled = false
+        }
     }
 
     func toggleShowingImage() {

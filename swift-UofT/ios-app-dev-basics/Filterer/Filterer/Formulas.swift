@@ -12,8 +12,11 @@ import Foundation
 
 // Protocol that all formulas must implement
 public protocol Formula {
-    var modifier: Int? { get }
+    var modifier: Int? { get set }
+    var minValue: Float? { get }
+    var maxValue: Float? { get }
     var hashValue: Int { get }
+    var modifiable: Bool { get }
     func apply(pixel: Pixel, averages: RGB) -> Pixel
 }
 
@@ -48,6 +51,9 @@ public func ==(lhs: Brightness, rhs: Brightness) -> Bool {
 public class RedBump: Formula {
 
     public var modifier: Int?
+    public var minValue: Float? =  1.0
+    public var maxValue: Float? = 10.0
+    public var modifiable: Bool = true
 
     public init(multiplier: Int) {
         self.modifier = multiplier
@@ -71,6 +77,9 @@ public class RedBump: Formula {
 public class GreenBump: Formula {
 
     public var modifier: Int?
+    public var minValue: Float? =  1.0
+    public var maxValue: Float? = 10.0
+    public var modifiable: Bool = true
 
     public init(multiplier: Int) {
         self.modifier = multiplier
@@ -94,6 +103,9 @@ public class GreenBump: Formula {
 public class BlueBump: Formula {
 
     public var modifier: Int?
+    public var minValue: Float? =  1.0
+    public var maxValue: Float? = 10.0
+    public var modifiable: Bool = true
 
     public init(multiplier: Int) {
         self.modifier = multiplier
@@ -117,7 +129,11 @@ public class BlueBump: Formula {
 // No reason to configure the effect of this one, greyscale calls for averaging the 3 pixels
 public class BlackAndWhite: Formula {
 
-    public var modifier: Int?
+    public var modifier: Int? = 1
+    public var minValue: Float? =  1.0
+    public var maxValue: Float? = 10.0
+    public var modifiable: Bool = false
+
     public init() {
     }
 
@@ -135,6 +151,9 @@ public class BlackAndWhite: Formula {
 public class Brightness: Formula {
 
     public var modifier: Int?
+    public var minValue: Float? =  0.0
+    public var maxValue: Float? = 100.0
+    public var modifiable: Bool = true
 
     public init(bump: Int) {
         self.modifier = bump
