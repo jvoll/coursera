@@ -44,11 +44,23 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 //        imageToggle.selected = !imageToggle.selected
 //    }
 
+    @IBOutlet weak var redButton: UIButton!
+    @IBOutlet weak var greenButton: UIButton!
+    @IBOutlet weak var blueButton: UIButton!
+    @IBOutlet weak var blackWhiteButton: UIButton!
+    @IBOutlet weak var brightnessButton: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         secondaryMenu.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
         secondaryMenu.translatesAutoresizingMaskIntoConstraints = false
+        
+        redButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+        greenButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+        blueButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+        blackWhiteButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+        brightnessButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
 
         reset()
 
@@ -184,7 +196,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let bottomConstraint = secondaryMenu.bottomAnchor.constraintEqualToAnchor(bottomMenu.topAnchor)
         let leftConstraint = secondaryMenu.leftAnchor.constraintEqualToAnchor(view.leftAnchor)
         let rightConstraint = secondaryMenu.rightAnchor.constraintEqualToAnchor(view.rightAnchor)
-        let heightConstraint = secondaryMenu.heightAnchor.constraintEqualToConstant(44)
+        let heightConstraint = secondaryMenu.heightAnchor.constraintEqualToConstant(55)
         NSLayoutConstraint.activateConstraints([bottomConstraint, leftConstraint, rightConstraint, heightConstraint])
         view.layoutIfNeeded()
 
@@ -204,19 +216,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
 
-    let redBump = RedBump(multiplier: 5)
+    let redBump = RedBump(multiplier: 25)
     @IBAction func onRedFilter(sender: UIButton) {
         model.apply(redBump)
         showFilteredImage()
     }
 
-    let greenBump = GreenBump(multiplier: 5)
+    let greenBump = GreenBump(multiplier: 25)
     @IBAction func onGreenFilter(sender: UIButton) {
         model.apply(greenBump)
         showFilteredImage()
     }
 
-    let blueBump = BlueBump(multiplier: 5)
+    let blueBump = BlueBump(multiplier: 25)
     @IBAction func onBlueFilter(sender: UIButton) {
         model.apply(blueBump)
         showFilteredImage()
@@ -228,7 +240,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         showFilteredImage()
     }
 
-    let brightness = Brightness(bump: 10)
+    let brightness = Brightness(bump: 50)
     @IBAction func onBrightnessFilter(sender: UIButton) {
         model.apply(brightness)
         showFilteredImage()

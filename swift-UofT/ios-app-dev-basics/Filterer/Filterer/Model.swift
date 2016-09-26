@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class Model {
-    var originalImage = UIImage(named: "yosemite-landscape") {
+    var originalImage = UIImage(named: "matterhorn") {
         didSet {
             currentFilteredImage = originalImage
             imageCache.removeAll(keepCapacity: false)
