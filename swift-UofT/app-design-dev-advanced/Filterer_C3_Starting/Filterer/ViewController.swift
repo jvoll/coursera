@@ -125,6 +125,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return imageView
     }
 
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if segue.identifier == "PresentSocial" {
+//            let destination = segue.destinationViewController
+//
+//        }
+//    }
+
 //    @IBAction func onTap(sender: UITapGestureRecognizer) {
 //        UIView.animateWithDuration(0.4) { 
 //            self.scrollView.zoomScale = 1.5 * self.scrollView.zoomScale
