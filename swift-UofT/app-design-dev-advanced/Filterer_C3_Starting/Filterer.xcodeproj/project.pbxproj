@@ -13,8 +13,57 @@
 		4DC1999F1BB201E100AA75E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DC1999E1BB201E100AA75E7 /* Assets.xcassets */; };
 		4DC199A21BB201E100AA75E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DC199A01BB201E100AA75E7 /* LaunchScreen.storyboard */; };
 		4DC199AA1BB2049F00AA75E7 /* RGBAImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC199A91BB2049F00AA75E7 /* RGBAImage.swift */; };
+		962207E01DB5C815007EDCED /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 962207DE1DB5C815007EDCED /* Interface.storyboard */; };
+		962207E21DB5C815007EDCED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 962207E11DB5C815007EDCED /* Assets.xcassets */; };
+		962207E91DB5C815007EDCED /* FilterWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 962207E81DB5C815007EDCED /* FilterWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		962207EE1DB5C815007EDCED /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962207ED1DB5C815007EDCED /* InterfaceController.swift */; };
+		962207F01DB5C815007EDCED /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962207EF1DB5C815007EDCED /* ExtensionDelegate.swift */; };
+		962207F21DB5C815007EDCED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 962207F11DB5C815007EDCED /* Assets.xcassets */; };
+		962207F61DB5C815007EDCED /* FilterWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 962207DC1DB5C815007EDCED /* FilterWatch.app */; };
 		96B8CA861D9E108C00A5126F /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B8CA851D9E108C00A5126F /* PhotoView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		962207EA1DB5C815007EDCED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4DC1998C1BB201E100AA75E7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 962207E71DB5C815007EDCED;
+			remoteInfo = "FilterWatch Extension";
+		};
+		962207F41DB5C815007EDCED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4DC1998C1BB201E100AA75E7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 962207DB1DB5C815007EDCED;
+			remoteInfo = FilterWatch;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		962207FC1DB5C815007EDCED /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				962207E91DB5C815007EDCED /* FilterWatch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		962207FE1DB5C815007EDCED /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				962207F61DB5C815007EDCED /* FilterWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4DC199941BB201E100AA75E7 /* Filterer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Filterer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -25,11 +74,27 @@
 		4DC199A11BB201E100AA75E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4DC199A31BB201E100AA75E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DC199A91BB2049F00AA75E7 /* RGBAImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RGBAImage.swift; sourceTree = "<group>"; };
+		962207DC1DB5C815007EDCED /* FilterWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FilterWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		962207DF1DB5C815007EDCED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		962207E11DB5C815007EDCED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		962207E31DB5C815007EDCED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		962207E81DB5C815007EDCED /* FilterWatch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "FilterWatch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		962207ED1DB5C815007EDCED /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		962207EF1DB5C815007EDCED /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		962207F11DB5C815007EDCED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		962207F31DB5C815007EDCED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96B8CA851D9E108C00A5126F /* PhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		4DC199911BB201E100AA75E7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		962207E51DB5C815007EDCED /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -43,6 +108,8 @@
 			isa = PBXGroup;
 			children = (
 				4DC199961BB201E100AA75E7 /* Filterer */,
+				962207DD1DB5C815007EDCED /* FilterWatch */,
+				962207EC1DB5C815007EDCED /* FilterWatch Extension */,
 				4DC199951BB201E100AA75E7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -51,6 +118,8 @@
 			isa = PBXGroup;
 			children = (
 				4DC199941BB201E100AA75E7 /* Filterer.app */,
+				962207DC1DB5C815007EDCED /* FilterWatch.app */,
+				962207E81DB5C815007EDCED /* FilterWatch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,6 +139,27 @@
 			path = Filterer;
 			sourceTree = "<group>";
 		};
+		962207DD1DB5C815007EDCED /* FilterWatch */ = {
+			isa = PBXGroup;
+			children = (
+				962207DE1DB5C815007EDCED /* Interface.storyboard */,
+				962207E11DB5C815007EDCED /* Assets.xcassets */,
+				962207E31DB5C815007EDCED /* Info.plist */,
+			);
+			path = FilterWatch;
+			sourceTree = "<group>";
+		};
+		962207EC1DB5C815007EDCED /* FilterWatch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				962207ED1DB5C815007EDCED /* InterfaceController.swift */,
+				962207EF1DB5C815007EDCED /* ExtensionDelegate.swift */,
+				962207F11DB5C815007EDCED /* Assets.xcassets */,
+				962207F31DB5C815007EDCED /* Info.plist */,
+			);
+			path = "FilterWatch Extension";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -80,15 +170,51 @@
 				4DC199901BB201E100AA75E7 /* Sources */,
 				4DC199911BB201E100AA75E7 /* Frameworks */,
 				4DC199921BB201E100AA75E7 /* Resources */,
+				962207FE1DB5C815007EDCED /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				962207F51DB5C815007EDCED /* PBXTargetDependency */,
 			);
 			name = Filterer;
 			productName = Filterer;
 			productReference = 4DC199941BB201E100AA75E7 /* Filterer.app */;
 			productType = "com.apple.product-type.application";
+		};
+		962207DB1DB5C815007EDCED /* FilterWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 962207FD1DB5C815007EDCED /* Build configuration list for PBXNativeTarget "FilterWatch" */;
+			buildPhases = (
+				962207DA1DB5C815007EDCED /* Resources */,
+				962207FC1DB5C815007EDCED /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				962207EB1DB5C815007EDCED /* PBXTargetDependency */,
+			);
+			name = FilterWatch;
+			productName = FilterWatch;
+			productReference = 962207DC1DB5C815007EDCED /* FilterWatch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		962207E71DB5C815007EDCED /* FilterWatch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 962207FB1DB5C815007EDCED /* Build configuration list for PBXNativeTarget "FilterWatch Extension" */;
+			buildPhases = (
+				962207E41DB5C815007EDCED /* Sources */,
+				962207E51DB5C815007EDCED /* Frameworks */,
+				962207E61DB5C815007EDCED /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "FilterWatch Extension";
+			productName = "FilterWatch Extension";
+			productReference = 962207E81DB5C815007EDCED /* FilterWatch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -96,11 +222,18 @@
 		4DC1998C1BB201E100AA75E7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = UofT;
 				TargetAttributes = {
 					4DC199931BB201E100AA75E7 = {
 						CreatedOnToolsVersion = 7.0;
+					};
+					962207DB1DB5C815007EDCED = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					962207E71DB5C815007EDCED = {
+						CreatedOnToolsVersion = 7.3.1;
 					};
 				};
 			};
@@ -118,6 +251,8 @@
 			projectRoot = "";
 			targets = (
 				4DC199931BB201E100AA75E7 /* Filterer */,
+				962207DB1DB5C815007EDCED /* FilterWatch */,
+				962207E71DB5C815007EDCED /* FilterWatch Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -130,6 +265,23 @@
 				4DC199A21BB201E100AA75E7 /* LaunchScreen.storyboard in Resources */,
 				4DC1999F1BB201E100AA75E7 /* Assets.xcassets in Resources */,
 				4DC1999D1BB201E100AA75E7 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		962207DA1DB5C815007EDCED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				962207E21DB5C815007EDCED /* Assets.xcassets in Resources */,
+				962207E01DB5C815007EDCED /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		962207E61DB5C815007EDCED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				962207F21DB5C815007EDCED /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,7 +299,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		962207E41DB5C815007EDCED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				962207F01DB5C815007EDCED /* ExtensionDelegate.swift in Sources */,
+				962207EE1DB5C815007EDCED /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		962207EB1DB5C815007EDCED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 962207E71DB5C815007EDCED /* FilterWatch Extension */;
+			targetProxy = 962207EA1DB5C815007EDCED /* PBXContainerItemProxy */;
+		};
+		962207F51DB5C815007EDCED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 962207DB1DB5C815007EDCED /* FilterWatch */;
+			targetProxy = 962207F41DB5C815007EDCED /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4DC1999B1BB201E100AA75E7 /* Main.storyboard */ = {
@@ -164,6 +338,14 @@
 				4DC199A11BB201E100AA75E7 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		962207DE1DB5C815007EDCED /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				962207DF1DB5C815007EDCED /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -274,6 +456,70 @@
 			};
 			name = Release;
 		};
+		962207F71DB5C815007EDCED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				IBSC_MODULE = FilterWatch_Extension;
+				INFOPLIST_FILE = FilterWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.uoft.Filterer.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Debug;
+		};
+		962207F81DB5C815007EDCED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				IBSC_MODULE = FilterWatch_Extension;
+				INFOPLIST_FILE = FilterWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.uoft.Filterer.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Release;
+		};
+		962207F91DB5C815007EDCED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = "FilterWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.uoft.Filterer.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Debug;
+		};
+		962207FA1DB5C815007EDCED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = "FilterWatch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.uoft.Filterer.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -294,6 +540,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		962207FB1DB5C815007EDCED /* Build configuration list for PBXNativeTarget "FilterWatch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				962207F91DB5C815007EDCED /* Debug */,
+				962207FA1DB5C815007EDCED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		962207FD1DB5C815007EDCED /* Build configuration list for PBXNativeTarget "FilterWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				962207F71DB5C815007EDCED /* Debug */,
+				962207F81DB5C815007EDCED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

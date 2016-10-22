@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>FilterWatch.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>Filterer.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -13,6 +18,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>4DC199931BB201E100AA75E7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>962207DB1DB5C815007EDCED</key>
 		<dict>
 			<key>primary</key>
 			<true/>
