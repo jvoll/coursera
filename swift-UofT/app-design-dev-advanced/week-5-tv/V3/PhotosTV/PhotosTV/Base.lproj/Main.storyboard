@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" initialViewController="FbV-R6-94w">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="XWF-1L-q2b">
+            <objects>
+                <navigationController id="FbV-R6-94w" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YJT-Sb-sh4">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="TeI-DR-wJG" kind="relationship" relationship="rootViewController" id="aWg-0x-22L"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p30-L0-lbP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1494" y="424"/>
+        </scene>
+        <!--Image Feed Collection View Controller-->
+        <scene sceneID="yPK-wQ-hQc">
+            <objects>
+                <collectionViewController id="TeI-DR-wJG" customClass="ImageFeedCollectionViewController" customModule="PhotosTV" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="KwY-ZT-VO6">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="100" minimumInteritemSpacing="48" id="6JT-ft-rdB">
+                            <size key="itemSize" width="548" height="458"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="90" minY="0.0" maxX="90" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageCell" id="f2P-zH-UT9" customClass="ImageCollectionViewCell" customModule="PhotosTV" customModuleProvider="target">
+                                <rect key="frame" x="90" y="145" width="548" height="458"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="548" height="458"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="yo2-DL-UGL">
+                                            <rect key="frame" x="8" y="8" width="532" height="442"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageWhenAncestorFocused="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AFL-xu-T9P">
+                                                    <rect key="frame" x="0.0" y="0.0" width="532" height="308"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="308" id="KLX-9e-sx7"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p4F-WH-LbU">
+                                                    <rect key="frame" x="0.0" y="308" width="532" height="134"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="yo2-DL-UGL" firstAttribute="leading" secondItem="f2P-zH-UT9" secondAttribute="leadingMargin" id="IBo-1d-diS"/>
+                                    <constraint firstItem="yo2-DL-UGL" firstAttribute="bottom" secondItem="f2P-zH-UT9" secondAttribute="bottomMargin" id="U0z-I0-iph"/>
+                                    <constraint firstItem="yo2-DL-UGL" firstAttribute="top" secondItem="f2P-zH-UT9" secondAttribute="topMargin" id="h4F-Dn-Tq2"/>
+                                    <constraint firstItem="yo2-DL-UGL" firstAttribute="trailing" secondItem="f2P-zH-UT9" secondAttribute="trailingMargin" id="y5M-dG-Qgy"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="imageView" destination="AFL-xu-T9P" id="eUK-3W-kWR"/>
+                                    <outlet property="title" destination="p4F-WH-LbU" id="Vuh-wb-XCk"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="TeI-DR-wJG" id="aLm-vn-c51"/>
+                            <outlet property="delegate" destination="TeI-DR-wJG" id="96m-PQ-kFA"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="CVq-8x-X6a"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yoX-5K-FKr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="571" y="424"/>
+        </scene>
+    </scenes>
+</document>
