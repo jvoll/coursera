@@ -19,6 +19,7 @@ class WorkoutsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.title = "My Workouts"
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,30 +40,51 @@ class WorkoutsTableViewController: UITableViewController {
 
         let workout = self.workouts?[indexPath.row]
         cell.workoutName.text = workout?.name ?? "unnamed :("
-//        let item = self.feed!.items[indexPath.row]
-//        cell.itemTitle.text = item.title
+        return cell
+    }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showWorkoutDetails" {
+            guard let indexPath = self.tableView.indexPathForSelectedRow else {
+                print("no row selected")
+                return
+            }
+            guard let destination = segue.destinationViewController as? WorkoutDetailsViewController else {
+                print("destination not WorkoutDetailsViewController")
+                return
+            }
+            guard let workout = self.workouts?[indexPath.row] else {
+                print("no workout found")
+                return
+            }
+            destination.workout = workout
+        }
+    }
 
 //
-//        let request = NSURLRequest(URL: item.imageURL)
-//
-//        cell.dataTask = self.urlSession.dataTaskWithRequest(request) { (data, response, error) -> Void in
-//            NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-//                if error == nil && data != nil {
-//                    let image = UIImage(data: data!)
-//                    cell.itemImageView.image = image
-//                }
-//            })
-//
+//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        guard let item = self.workouts?[indexPath.row] else {
+//            print("Could not find workout for \(indexPath.row)")
+//            return
 //        }
 //
 //
 //
-//        cell.dataTask?.resume()
-
-        return cell
-    }
-
+//        let alertController = UIAlertController(title: "Add Tag", message: "Type your tag", preferredStyle: .Alert)
+//        let defaultAction = UIAlertAction(title: "OK", style: .Default) { (action) -> Void in
+//            if let tagTitle = alertController.textFields![0].text {
+//                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//                appDelegate.dataController.tagFeedItem(tagTitle, feedItem: item)
+//            }
+//
+//        }
+//        alertController.addAction(defaultAction)
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+//        alertController.addAction(cancelAction)
+//        alertController.addTextFieldWithConfigurationHandler(nil)
+//        self.presentViewController(alertController, animated: true, completion: nil)
+//
+//    }
 
 }
 
