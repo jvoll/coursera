@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15G1004" minimumToolsVersion="Xcode 7.0">
+    <entity name="Exercise" representedClassName=".Exercise" syncable="YES">
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="workouts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Workout" inverseName="exercises" inverseEntity="Workout" syncable="YES"/>
+    </entity>
+    <entity name="Workout" representedClassName=".Workout" syncable="YES">
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="sets" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Exercise" inverseName="workouts" inverseEntity="Exercise" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Exercise" positionX="-63" positionY="-18" width="128" height="73"/>
+        <element name="Workout" positionX="223" positionY="-27" width="128" height="88"/>
+    </elements>
+</model>

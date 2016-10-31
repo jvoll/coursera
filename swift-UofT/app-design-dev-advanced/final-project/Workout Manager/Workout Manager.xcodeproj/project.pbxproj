@@ -25,6 +25,9 @@
 		96C4D4731DC5A6CE00FABD09 /* AddExerciseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C4D4721DC5A6CE00FABD09 /* AddExerciseTableViewCell.swift */; };
 		96C4D4751DC5C02900FABD09 /* ExerciseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C4D4741DC5C02900FABD09 /* ExerciseTableViewCell.swift */; };
 		96C4D4771DC5C0C400FABD09 /* AddExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C4D4761DC5C0C400FABD09 /* AddExerciseViewController.swift */; };
+		96C4D47B1DC6CEAB00FABD09 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96C4D4791DC6CEAB00FABD09 /* Model.xcdatamodeld */; };
+		96C4D47E1DC6D1BE00FABD09 /* Workout+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C4D47C1DC6D1BE00FABD09 /* Workout+CoreDataProperties.swift */; };
+		96C4D47F1DC6D1BE00FABD09 /* Exercise+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C4D47D1DC6D1BE00FABD09 /* Exercise+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +72,9 @@
 		96C4D4721DC5A6CE00FABD09 /* AddExerciseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExerciseTableViewCell.swift; sourceTree = "<group>"; };
 		96C4D4741DC5C02900FABD09 /* ExerciseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseTableViewCell.swift; sourceTree = "<group>"; };
 		96C4D4761DC5C0C400FABD09 /* AddExerciseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddExerciseViewController.swift; sourceTree = "<group>"; };
+		96C4D47A1DC6CEAB00FABD09 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		96C4D47C1DC6D1BE00FABD09 /* Workout+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Workout+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		96C4D47D1DC6D1BE00FABD09 /* Exercise+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Exercise+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +125,7 @@
 		964656731DC04A8C0089D293 /* Workout Manager */ = {
 			isa = PBXGroup;
 			children = (
+				96C4D4781DC6CE7100FABD09 /* CoreData */,
 				964656A61DC04EA20089D293 /* Model */,
 				96C4D4711DC59FFE00FABD09 /* WorkoutsTab */,
 				964656741DC04A8C0089D293 /* AppDelegate.swift */,
@@ -172,6 +179,16 @@
 				96C4D4741DC5C02900FABD09 /* ExerciseTableViewCell.swift */,
 			);
 			name = WorkoutsTab;
+			sourceTree = "<group>";
+		};
+		96C4D4781DC6CE7100FABD09 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				96C4D47C1DC6D1BE00FABD09 /* Workout+CoreDataProperties.swift */,
+				96C4D47D1DC6D1BE00FABD09 /* Exercise+CoreDataProperties.swift */,
+				96C4D4791DC6CEAB00FABD09 /* Model.xcdatamodeld */,
+			);
+			name = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,14 +325,17 @@
 				964656AC1DC05B110089D293 /* DataController.swift in Sources */,
 				96C4D4731DC5A6CE00FABD09 /* AddExerciseTableViewCell.swift in Sources */,
 				964656A81DC04EDD0089D293 /* Exercise.swift in Sources */,
+				96C4D47B1DC6CEAB00FABD09 /* Model.xcdatamodeld in Sources */,
 				964656AE1DC0716D0089D293 /* WorkoutTableViewCell.swift in Sources */,
 				964656791DC04A8C0089D293 /* CurrentWorkoutViewController.swift in Sources */,
+				96C4D47E1DC6D1BE00FABD09 /* Workout+CoreDataProperties.swift in Sources */,
 				96C4D4701DC59FEC00FABD09 /* WorkoutDetailTableViewCell.swift in Sources */,
 				964656751DC04A8C0089D293 /* AppDelegate.swift in Sources */,
 				964656A51DC04D220089D293 /* ExercisesViewController.swift in Sources */,
 				964656771DC04A8C0089D293 /* WorkoutsTableViewController.swift in Sources */,
 				96C4D4751DC5C02900FABD09 /* ExerciseTableViewCell.swift in Sources */,
 				96C4D46E1DC59AC900FABD09 /* WorkoutDetailsViewController.swift in Sources */,
+				96C4D47F1DC6D1BE00FABD09 /* Exercise+CoreDataProperties.swift in Sources */,
 				96C4D4771DC5C0C400FABD09 /* AddExerciseViewController.swift in Sources */,
 				964656AA1DC04EEA0089D293 /* Workout.swift in Sources */,
 			);
@@ -565,6 +585,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		96C4D4791DC6CEAB00FABD09 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				96C4D47A1DC6CEAB00FABD09 /* Model.xcdatamodel */,
+			);
+			currentVersion = 96C4D47A1DC6CEAB00FABD09 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 964656691DC04A8C0089D293 /* Project object */;
 }

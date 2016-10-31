@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class WorkoutDetailsViewController: UITableViewController {
     var workout: Workout? {
@@ -16,23 +17,53 @@ class WorkoutDetailsViewController: UITableViewController {
         }
     }
 
+    var fetchedResultsController: NSFetchedResultsController?
+
+    override func viewWillAppear(animated: Bool) {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let moc = appDelegate.dataController.managedObjectContext
+
+        let request = NSFetchRequest(entityName: "Workout")
+        request.predicate = NSPredicate(format: "name == %@", workout!.name)
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
+
+        do {
+            try self.fetchedResultsController?.performFetch()
+        } catch {
+            fatalError("tags fetch failed")
+        }
+    }
+
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let workout = workout else {
-            return 1
+//        let path = NSIndexPath(index: 0)
+        if let workout = self.fetchedResultsController?.fetchedObjects?[0] as? Workout,
+            let numExercises = workout.exercises?.count {
+            return numExercises + 1
         }
-        return workout.numExercises() + 1
+        return 1
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.row < workout?.exercises.count {
+        if indexPath.row < workout?.exercises?.count {
             if let cell = tableView.dequeueReusableCellWithIdentifier("WorkoutDetailTableViewCell", forIndexPath: indexPath) as? WorkoutDetailTableViewCell {
 
-                let exercise = self.workout?.exercises[indexPath.row]
-                cell.exerciseName.text = exercise?.name ?? "unnamed :("
+                let workout = self.fetchedResultsController?.fetchedObjects?[0] as? Workout
+
+                if let workoutExercises = workout?.exercises?.allObjects as? [Exercise] {
+                    let exercise = workoutExercises[indexPath.row]
+                    cell.exerciseName.text = exercise.name ?? "unnamed :("
+                } else {
+                    cell.exerciseName.text = "blah"
+                }
+//                let exercise = self.workout?.exercises?.[indexPath.row]
+//                cell.exerciseName.text = exercise?.name ?? "unnamed :("
+//                cell.exerciseName.text = "blah"
                 return cell
             }
         }
@@ -61,10 +92,14 @@ class WorkoutDetailsViewController: UITableViewController {
                 return
             }
 
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            appDelegate.dataController.addExercise(exercise, toWorkout: workout)
+
             let nextIndex = workout.numExercises()
             let newIndexPath = NSIndexPath(forRow: nextIndex, inSection: 0)
-            workout.exercises.append(exercise)
+
             tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+            tableView.reloadData()
         }
     }
 }

@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import CoreData
 
-class Exercise {
-    var name: String
-
-    init(name: String) {
-        self.name = name
-    }
+class Exercise: NSManagedObject {
+//    var name: String
+//
+//    init(name: String) {
+//        self.name = name
+//    }
 }

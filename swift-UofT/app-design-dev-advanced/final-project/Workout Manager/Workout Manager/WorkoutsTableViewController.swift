@@ -7,12 +7,32 @@
 //
 
 import UIKit
+import CoreData
 
 class WorkoutsTableViewController: UITableViewController {
 
-    var workouts: [Workout]? {
-        didSet {
-            self.tableView.reloadData()
+//    var workouts: [Workout]? {
+//        didSet {
+//            self.tableView.reloadData()
+//        }
+//    }
+
+    var fetchedResultsController: NSFetchedResultsController!
+
+    override func viewWillAppear(animated: Bool) {
+
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let moc = appDelegate.dataController.managedObjectContext
+
+        let request = NSFetchRequest(entityName: "Workout")
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
+
+        do {
+            try self.fetchedResultsController.performFetch()
+        } catch {
+            fatalError("tags fetch failed")
         }
     }
 
@@ -32,13 +52,14 @@ class WorkoutsTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.workouts?.count ?? 0
+        return self.fetchedResultsController.sections?[section].numberOfObjects ?? 0
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+
         let cell = tableView.dequeueReusableCellWithIdentifier("WorkoutTableViewCell", forIndexPath: indexPath) as! WorkoutTableViewCell
 
-        let workout = self.workouts?[indexPath.row]
+        let workout = self.fetchedResultsController.objectAtIndexPath(indexPath) as? Workout
         cell.workoutName.text = workout?.name ?? "unnamed :("
         return cell
     }
@@ -53,7 +74,9 @@ class WorkoutsTableViewController: UITableViewController {
                 print("destination not WorkoutDetailsViewController")
                 return
             }
-            guard let workout = self.workouts?[indexPath.row] else {
+
+            let fetchedWorkout = self.fetchedResultsController.objectAtIndexPath(indexPath) as? Workout
+            guard let workout = fetchedWorkout else {
                 print("no workout found")
                 return
             }
