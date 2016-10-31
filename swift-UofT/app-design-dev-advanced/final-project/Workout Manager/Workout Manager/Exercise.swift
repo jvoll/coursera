@@ -10,9 +10,5 @@ import Foundation
 import CoreData
 
 class Exercise: NSManagedObject {
-//    var name: String
-//
-//    init(name: String) {
-//        self.name = name
-//    }
+
 }

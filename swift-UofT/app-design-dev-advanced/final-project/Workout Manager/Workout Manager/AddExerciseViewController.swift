@@ -11,12 +11,6 @@ import CoreData
 
 class AddExerciseViewController: UITableViewController {
 
-//    var availableExercises: [Exercise]? {
-//        didSet {
-//            self.tableView.reloadData()
-//        }
-//    }
-
     var fetchedResultsController: NSFetchedResultsController!
 
     var selectedExercise: Exercise?
@@ -35,15 +29,6 @@ class AddExerciseViewController: UITableViewController {
         } catch {
             fatalError("tags fetch failed")
         }
-    }
-
-    override func viewDidLoad() {
-//        guard let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate else {
-//            print("ERROR: app delegate non-existent?!")
-//            return
-//        }
-
-//        availableExercises = appDelegate.dataController.allExercises
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -65,11 +50,6 @@ class AddExerciseViewController: UITableViewController {
         print("ERROR: returning default exercise table view cell")
         return ExerciseTableViewCell()
     }
-
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//
-//    }
-
 
     @IBAction func onCancel(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true, completion: nil)

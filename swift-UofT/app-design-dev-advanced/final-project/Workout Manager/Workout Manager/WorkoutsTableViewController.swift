@@ -11,16 +11,9 @@ import CoreData
 
 class WorkoutsTableViewController: UITableViewController {
 
-//    var workouts: [Workout]? {
-//        didSet {
-//            self.tableView.reloadData()
-//        }
-//    }
-
     var fetchedResultsController: NSFetchedResultsController!
 
     override func viewWillAppear(animated: Bool) {
-
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let moc = appDelegate.dataController.managedObjectContext
 
@@ -80,34 +73,8 @@ class WorkoutsTableViewController: UITableViewController {
                 print("no workout found")
                 return
             }
-            destination.workout = workout
+            destination.workoutName = workout.name
         }
     }
-
-//
-//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        guard let item = self.workouts?[indexPath.row] else {
-//            print("Could not find workout for \(indexPath.row)")
-//            return
-//        }
-//
-//
-//
-//        let alertController = UIAlertController(title: "Add Tag", message: "Type your tag", preferredStyle: .Alert)
-//        let defaultAction = UIAlertAction(title: "OK", style: .Default) { (action) -> Void in
-//            if let tagTitle = alertController.textFields![0].text {
-//                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//                appDelegate.dataController.tagFeedItem(tagTitle, feedItem: item)
-//            }
-//
-//        }
-//        alertController.addAction(defaultAction)
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-//        alertController.addAction(cancelAction)
-//        alertController.addTextFieldWithConfigurationHandler(nil)
-//        self.presentViewController(alertController, animated: true, completion: nil)
-//
-//    }
-
 }
 

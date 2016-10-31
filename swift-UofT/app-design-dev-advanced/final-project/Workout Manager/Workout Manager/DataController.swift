@@ -12,53 +12,11 @@ import CoreData
 class DataController {
 
     let managedObjectContext: NSManagedObjectContext
-//    var allExercises = [Exercise] {
-//        let getExercises = NSFetchRequest(entityName: "Exercise")
-//
-//        do {
-//            return try self.manaageObjectContext.executeFetchRequest(getExercises) as! [Exercise]
-//        } catch {
-//            fatalError("fetch exercises failed")
-//        }
-//    }
-//
-//    var myWorkouts:[Workout] {
-//        let getWorkouts = NSFetchRequest(entityName: "Workout")
-//
-//        do {
-//            return try self.managedObjectContext.executeFetchRequest(getWorkouts) as! [Workout]
-//        } catch {
-//            fatalError("fetch workouts failed")
-//        }
-//    }
 
     init(moc: NSManagedObjectContext) {
         self.managedObjectContext = moc
         addDefaultData()
     }
-
-//    init() {
-//        allExercises.append(Exercise(name: "Situps"))
-//        allExercises.append(Exercise(name: "Pushups"))
-//        allExercises.append(Exercise(name: "High Plank"))
-//        allExercises.append(Exercise(name: "Squats"))
-//
-//        let coreWorkout = Workout(name: "Core workout", sets: 5)
-//        coreWorkout.exercises.append(allExercises[0])
-//        coreWorkout.exercises.append(allExercises[2])
-//
-//        let fullBodyWorkout = Workout(name: "Full Body")
-//        fullBodyWorkout.exercises.append(allExercises[0])
-//        fullBodyWorkout.exercises.append(allExercises[1])
-//        fullBodyWorkout.exercises.append(allExercises[2])
-//        fullBodyWorkout.exercises.append(allExercises[3])
-//        fullBodyWorkout.exercises.append(allExercises[2])
-//        fullBodyWorkout.exercises.append(allExercises[1])
-//        fullBodyWorkout.exercises.append(allExercises[0])
-//
-//        myWorkouts.append(coreWorkout)
-//        myWorkouts.append(fullBodyWorkout)
-//    }
 
     convenience init?() {
 
@@ -153,14 +111,14 @@ class DataController {
     }
 
     func addExercise(exercise: Exercise, toWorkout workout: Workout) {
-        if let exercises = workout.exercises {
-            let newExercises = NSMutableSet(set: exercises)
-            newExercises.addObject(exercise)
-            workout.exercises = newExercises
-        } else {
-            let newExercises = NSMutableSet()
-            newExercises.addObject(exercise)
-            workout.exercises = newExercises
+        if workout.workoutExercise == nil {
+            workout.workoutExercise = NSMutableOrderedSet()
+        }
+
+        if let workoutExercise = NSEntityDescription.insertNewObjectForEntityForName("WorkoutExercise", inManagedObjectContext: self.managedObjectContext) as? WorkoutExercise {
+            workoutExercise.exercise = exercise
+            workoutExercise.workout = workout
+            workout.workoutExercise?.addObject(workoutExercise)
         }
 
         do {

@@ -1,5 +1,5 @@
 //
-//  Exercise+CoreDataProperties.swift
+//  WorkoutExercise+CoreDataProperties.swift
 //  Workout Manager
 //
 //  Created by Jason Voll on 2016-10-30.
@@ -12,8 +12,9 @@
 import Foundation
 import CoreData
 
-extension Exercise {
+extension WorkoutExercise {
 
-    @NSManaged var name: String
+    @NSManaged var workout: Workout?
+    @NSManaged var exercise: Exercise?
 
 }

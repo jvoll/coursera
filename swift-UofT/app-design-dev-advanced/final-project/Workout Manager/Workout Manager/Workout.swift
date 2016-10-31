@@ -10,12 +10,5 @@ import Foundation
 import CoreData
 
 class Workout: NSManagedObject {
-//    var name: String
-//    var sets: Int
-//    var exercises = [Exercise]()
-//
-//    init(name: String, sets: Int = 1) {
-//        self.name = name
-//        self.sets = sets
-//    }
+
 }

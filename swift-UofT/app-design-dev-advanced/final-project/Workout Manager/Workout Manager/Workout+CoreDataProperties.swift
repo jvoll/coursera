@@ -16,9 +16,12 @@ extension Workout {
 
     @NSManaged var name: String
     @NSManaged var sets: NSNumber
-    @NSManaged var exercises: NSSet?
+    @NSManaged var workoutExercise: NSMutableOrderedSet?
 
     func numExercises() -> Int {
-        return exercises?.count ?? 0
+        guard let workoutExercises = workoutExercise else {
+            return 0
+        }
+        return workoutExercises.count
     }
 }

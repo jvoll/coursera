@@ -36,12 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-
-//        let tabController = application.windows[0].rootViewController as? UITabBarController
-//        let tabs = tabController?.childViewControllers
-//        let workoutsNavController = tabs?[0] as? UINavigationController
-//        let workoutsTableViewController = workoutsNavController?.viewControllers[0] as? WorkoutsTableViewController
-//        workoutsTableViewController?.workouts = dataController.myWorkouts
     }
 
     func applicationWillTerminate(application: UIApplication) {
