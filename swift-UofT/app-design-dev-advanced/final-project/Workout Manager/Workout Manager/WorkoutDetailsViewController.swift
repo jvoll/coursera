@@ -21,14 +21,10 @@ class WorkoutDetailsViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let exercises = workout?.exercises else {
+        guard let workout = workout else {
             return 1
         }
-
-        if exercises.count > 0 {
-            return exercises.count + 1
-        }
-        return 1
+        return workout.numExercises() + 1
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -45,18 +41,30 @@ class WorkoutDetailsViewController: UITableViewController {
         return cell
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        guard let selectedCell = tableView.cellForRowAtIndexPath(indexPath) else {
-            print("no selected cell")
-            return
-        }
-
-        if let workoutDetailCell = selectedCell as? WorkoutDetailTableViewCell {
-            
-        }
-
-//        if let addExerciseCell = selectedCell as? AddExerciseTableViewCell {
-// setup in storyboard, not needed
+//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        guard let selectedCell = tableView.cellForRowAtIndexPath(indexPath) else {
+//            print("no selected cell")
+//            return
 //        }
+//
+//        if let workoutDetailCell = selectedCell as? WorkoutDetailTableViewCell {
+//            // TODO allow editing of an exercise (reps, time, etc.)
+//        }
+//    }
+
+    @IBAction func unwindToWorkoutDetailsList(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.sourceViewController as? AddExerciseViewController,
+            let exercise = sourceViewController.selectedExercise {
+
+            guard let workout = workout else {
+                print("ERROR: no workout!")
+                return
+            }
+
+            let nextIndex = workout.numExercises()
+            let newIndexPath = NSIndexPath(forRow: nextIndex, inSection: 0)
+            workout.exercises.append(exercise)
+            tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+        }
     }
 }

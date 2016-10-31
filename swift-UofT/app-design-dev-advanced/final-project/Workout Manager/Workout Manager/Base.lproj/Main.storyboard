@@ -167,8 +167,12 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="phP-Tf-nzl" kind="unwind" identifier="unwindToWorkoutDetailsList" unwindAction="unwindToWorkoutDetailsList:" id="hvA-aR-cFR"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0zX-f8-t4K" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="phP-Tf-nzl" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3780" y="-320"/>
         </scene>

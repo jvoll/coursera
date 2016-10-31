@@ -17,4 +17,8 @@ class Workout {
         self.name = name
         self.sets = sets
     }
+
+    func numExercises() -> Int {
+        return exercises.count
+    }
 }

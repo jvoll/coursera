@@ -16,6 +16,8 @@ class AddExerciseViewController: UITableViewController {
         }
     }
 
+    var selectedExercise: Exercise?
+
     override func viewDidLoad() {
         guard let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate else {
             print("ERROR: app delegate non-existent?!")
@@ -49,28 +51,25 @@ class AddExerciseViewController: UITableViewController {
         return ExerciseTableViewCell()
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        <#code#>
-    }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//
+//    }
 
 
     @IBAction func onCancel(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true, completion: nil)
     }
 
-//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        guard let selectedCell = tableView.cellForRowAtIndexPath(indexPath) else {
-//            print("no selected cell")
-//            return
-//        }
-//
-//        if let workoutDetailCell = selectedCell as? WorkoutDetailTableViewCell {
-//
-//        }
-//
-//        if let addExerciseCell = selectedCell as? AddExerciseTableViewCell {
-//            
-//        }
-//    }
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        guard let selectedCell = tableView.cellForRowAtIndexPath(indexPath) else {
+            print("no selected cell")
+            return
+        }
+
+        if let _ = selectedCell as? ExerciseTableViewCell {
+            selectedExercise = availableExercises?[indexPath.row]
+            performSegueWithIdentifier("unwindToWorkoutDetailsList", sender: self)
+        }
+    }
 
 }
