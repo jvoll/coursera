@@ -22,7 +22,6 @@ class TagsTableViewController: UITableViewController {
         }
     }
     
-    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
         return self.fetchedResultsController.sections!.count
