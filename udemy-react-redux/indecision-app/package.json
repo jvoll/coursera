@@ -1,0 +1,14 @@
+{
+  "name": "indecision-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "jvoll",
+  "license": "MIT",
+  "dependencies": {
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.3"
+  }
+}
